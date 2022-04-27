@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for #import flask module
+from flask import Flask, redirect, url_for, jsonify #import flask module
 
 app = Flask(__name__) # create an instance of the flask web application
 
@@ -7,17 +7,44 @@ app = Flask(__name__) # create an instance of the flask web application
 #function definition
 
 def home():
-    return "Welcome to REVA university"
+    f = open("index.html")
+    text = f.read();
+    f.close()
+    return text
+
+@app.route("/question")
+
+def sendquestion():
+    d = {
+        "que":"Q. Who is the father of computer",
+        "ans":["Charles Babbage","C V Raman","Vin Cerf", "Alan turing"]
+    }
+    return jsonify(d)
+
+@app.route("/answer/<op>")
+def checkAnswer(op):
+    if op=="1":
+        d = {"answer":True}
+    else :
+        d = {"answer", False}
+    return jsonify(d)
+
+
+
 
 @app.route("/<name>")
 def user(name):
-    return f"Hello <h1>{name}</h1>" #We are using a formatted string
+    if name.endswith(".css") or name.endswith(".js"):
+        g = open(name)
+        t = g.read()
+        g.close()
+        return t
+    else:    
+        return f"Hello {name}"
+    
 
 
 
-@app.route("/admin")
-def admin():
-    return redirect(url_for("user", name = "aDMin"))
 
     
 if __name__  == "__main__": #to run the flask website
