@@ -30,7 +30,7 @@ $(function() {
             if(data["answer"]) {
                 $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op2\">Chandan </button> <br/>")
             } else {
-                $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-dangers btn-block\" id = \"op2\">Chandan </button> <br/>")
+                $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op2\">Chandan </button> <br/>")
             }
         })
     })
