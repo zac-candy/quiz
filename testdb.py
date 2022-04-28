@@ -1,28 +1,45 @@
-# program to verify the functioning of the database
-
 import sqlalchemy
+from sqlalchemy import Table, Column, Integer, String, Text
+from sqlalchemy.orm import mapper
+# from yourapplication.database import metadata, db_session
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
-#feed the questions database's url
-url = "sqlite:///quiz.db"
 
-#create an sqlalchemy engine and connect the obtained url to it
+
+url="sqlite:///quiz.db"
 engine = sqlalchemy.create_engine(url)
 
-#check the database connection
-print("connected to the database")
+db_session = scoped_session(sessionmaker(autocommit=False,
+                                         autoflush=False,
+                                         bind=engine))
+Base = declarative_base()
+Base.query = db_session.query_property()
 
-# coding: utf-8
-from sqlalchemy import Column, MetaData, Table, Text
 
-metadata = MetaData()
+print("connected to database")
+from sqlalchemy import Column,MetaData,Table,Text
+metadata=MetaData()
 
-t_questions = Table(
-    'questions', metadata,
-    Column('question', Text),
-    Column('op1', Text),
-    Column('op2', Text),
-    Column('op3', Text),
-    Column('op4', Text),
-    Column('answer', Text)
-)
 
+class Question(Base):
+    __tablename__ = 'questions'
+    id = Column(Integer, primary_key = True)
+    question = Column(Text)
+    op1 = Column(Text)
+    op2 = Column(Text)
+    op3 = Column(Text)
+    op4 = Column(Text)
+    answer  = Column(Text)
+
+    def __init__(self, question,op1,op2,op3,op4,answer):
+        self.question = question
+        self.op1 = op1
+        self.op2 = op2
+        self.op3 = op3
+        self.op4 = op4
+        self.answer = answer
+
+data = db_session.query(Question).all()
+print(data)

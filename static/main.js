@@ -1,62 +1,78 @@
+$(function(){
+    let questionId = 0
+    let data = []
 
 
-// The above version of the code has been deprecated since jquery 3.0 . The newer version of the syntax is given below
-
-$(function() { 
-
-    //the objective of the below fn is to change question each time the next button is clicked.
-    changeData = function(data) {
-        $("#question").html(data["que"])
-        $("#op1").html(data["ans"][0])
-    $("#op2").html(data["ans"][1])
-    $("#op3").html(data["ans"][2])
-    $("#op4").html(data["ans"][3])
+    setQuestion = function(id) {
+        q = data[id]
+        $("#question").html(q["que"])
+        $("#op1").html(q["ans"][0])
+        $("#op2").html(q["ans"][1])
+        $("#op3").html(q["ans"][2])
+        $("#op4").html(q["ans"][3])
     }
-    
-    $.get("/question", changeData)
-
-    $("#op1").on("click",function() {
-        $.get("/answer/1", function(data) {
-            if(data["answer"]) {
-                $("#op1").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op1\">Charles Babbage </button> <br/>")
-            } else {
-                $("#op1").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op1\">Charles Babbage </button> <br/>")
-            }
-        })
+    $.get("/question", function(d){
+        for(let i = 0; i < d.length; i++) {
+            data.push(d[i])
+        }
+        setQuestion(questionId);
     })
 
-    $("#op2").on("click",function() {
-        $.get("/answer/2", function(data) {
-            if(data["answer"]) {
-                $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op2\">Chandan </button> <br/>")
-            } else {
-                $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op2\">Chandan </button> <br/>")
-            }
-        })
+   
+    $("#nx").on("click", function() {
+        questionId+=1;
+        if(questionId>=data.length) {
+            questionId.length -1
+        }
+        setQuestion(questionId)
     })
 
-    $("#op3").on("click",function() {
-        $.get("/answer/3", function(data) {
-            if(data["answer"]) {
-                $("#op3").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op3\">Prasthuth </button> <br/>")
-            } else {
-                $("#op3").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op3\">Prasthuth </button> <br/>")
-            }
-        })
+    $("#prev").on("click", function() {
+        questionId-=1
+        if(questionId <=0) {
+            questionId.length+1
+        }
+        setQuestion(questionId)
     })
 
-    $("#op4").on("click",function() {
-        $.get("/answer/4", function(data) {
-            if(data["answer"]) {
-                $("#op4").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op4\">Tejas </button> <br/>")
-            } else {
-                $("#op4").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op4\">Tejas</button> <br/>")
-            }
-        })
-    })
+    $("#op1").on("click", function() {
+        if(data[questionId]["key"]=="1") {
+            alert("Correct Answer")
+        } else {
+            alert("Wrong Answer")
+        }
+    }) 
 
-    
-    
-    
-    
-})
+    $("#op2").on("click", function() {
+        if(data[questionId]["key"]=="2") {
+            alert("Correct Answer")
+        } else {
+            alert("Wrong Answer")
+        }
+    }) 
+
+    $("#op3").on("click", function() {
+        if(data[questionId]["key"]=="3") {
+            alert("Correct Answer")
+        } else {
+            alert("Wrong Answer")
+        }
+    }) 
+
+    $("#op4").on("click", function() {
+        if(data[questionId]["key"]=="4") {
+            alert("Correct Answer")
+        } else {
+            alert("Wrong Answer")
+        }
+    }) 
+
+    $("#op1").on("click", function() {
+        if(data[questionId]["key"]=="1") {
+            alert("Correct Answer")
+        } else {
+            alert("Wrong Answer")
+        }
+    }) 
+
+});
