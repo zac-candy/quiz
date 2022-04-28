@@ -18,9 +18,9 @@ $(function() {
     $("#op1").on("click",function() {
         $.get("/answer/1", function(data) {
             if(data["answer"]) {
-                $("#op1").html("is this workgin")
+                $("#op1").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op1\">Charles Babbage </button> <br/>")
             } else {
-                alert("Wrong Answer")
+                $("#op1").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op1\">Charles Babbage </button> <br/>")
             }
         })
     })
@@ -28,9 +28,9 @@ $(function() {
     $("#op2").on("click",function() {
         $.get("/answer/2", function(data) {
             if(data["answer"]) {
-                alert("Correct Answer")
+                $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op2\">Chandan </button> <br/>")
             } else {
-                alert("Wrong Answer")
+                $("#op2").replaceWith("<button type=\"button\" class=\"btn btn-dangers btn-block\" id = \"op2\">Chandan </button> <br/>")
             }
         })
     })
@@ -38,9 +38,9 @@ $(function() {
     $("#op3").on("click",function() {
         $.get("/answer/3", function(data) {
             if(data["answer"]) {
-                alert("Correct Answer")
+                $("#op3").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op3\">Prasthuth </button> <br/>")
             } else {
-                alert("Wrong Answer")
+                $("#op3").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op3\">Prasthuth </button> <br/>")
             }
         })
     })
@@ -48,9 +48,9 @@ $(function() {
     $("#op4").on("click",function() {
         $.get("/answer/4", function(data) {
             if(data["answer"]) {
-                alert("Correct Answer")
+                $("#op4").replaceWith("<button type=\"button\" class=\"btn btn-success btn-block\" id = \"op4\">Tejas </button> <br/>")
             } else {
-                alert("Wrong Answer")
+                $("#op4").replaceWith("<button type=\"button\" class=\"btn btn-danger btn-block\" id = \"op4\">Tejas</button> <br/>")
             }
         })
     })
