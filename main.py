@@ -17,7 +17,7 @@ def home():
 def sendquestion():
     d = {
         "que":"Q. Who is the father of computer",
-        "ans":["Charles Babbage","C V Raman","Vin Cerf", "Alan turing"]
+        "ans":["Charles Babbage","Chandan","Prasthuth", "tejas"]
     }
     return jsonify(d)
 
@@ -26,7 +26,7 @@ def checkAnswer(op):
     if op=="1":
         d = {"answer":True}
     else :
-        d = {"answer", False}
+        d = {"answer":False}
     return jsonify(d)
 
 

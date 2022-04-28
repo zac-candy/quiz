@@ -15,6 +15,46 @@ $(function() {
     
     $.get("/question", changeData)
 
+    $("#op1").on("click",function() {
+        $.get("/answer/1", function(data) {
+            if(data["answer"]) {
+                $("#op1").html("is this workgin")
+            } else {
+                alert("Wrong Answer")
+            }
+        })
+    })
+
+    $("#op2").on("click",function() {
+        $.get("/answer/2", function(data) {
+            if(data["answer"]) {
+                alert("Correct Answer")
+            } else {
+                alert("Wrong Answer")
+            }
+        })
+    })
+
+    $("#op3").on("click",function() {
+        $.get("/answer/3", function(data) {
+            if(data["answer"]) {
+                alert("Correct Answer")
+            } else {
+                alert("Wrong Answer")
+            }
+        })
+    })
+
+    $("#op4").on("click",function() {
+        $.get("/answer/4", function(data) {
+            if(data["answer"]) {
+                alert("Correct Answer")
+            } else {
+                alert("Wrong Answer")
+            }
+        })
+    })
+
     
     
     
